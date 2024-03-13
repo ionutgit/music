@@ -4,7 +4,7 @@ import { required } from '@vee-validate/rules'
 export default {
   install(app) {
     app.component('VeeForm', VeeForm)
-    app.component('VeeValidate', VeeField)
+    app.component('VeeField', VeeField)
 
     defineRule('required', required)
   }
