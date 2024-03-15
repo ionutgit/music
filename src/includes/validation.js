@@ -56,7 +56,8 @@ export default {
           : `The field ${ctx.field} is invalid.`
 
         return message
-      }
+      },
+      validateOnInput: true
     })
   }
 }
