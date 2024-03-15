@@ -1,0 +1,13 @@
+Slot properties
+
+componenta copil
+
+-are date
+-in <slot> putem sa punem datele si sa fie valabile in parent scope
+-<slot :user="user"></slot>
+
+componenta parinte
+-in componenta copil putem sa apelam datele din slot (chestia asta am intalnit-o mult la unele framework-uri si nu o intelegeam)
+-sunt doua variante: <componenta-copil v-slot="v">Hello {{ v.user.name }}</componenta-copil>
+<componenta-copil #default="{ user }">Hello {{ user.name }}</componenta-copil>
+la al doilea exemplu am utilizat destructurare
