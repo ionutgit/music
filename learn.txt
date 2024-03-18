@@ -1,3 +1,6 @@
+CAND CAUTI UN ANUME SUBIECT SA CAUTI CURSURI GENERALE PE FRAMEWORK-UL RESPECTIV,
+POATE O SECTIUNE CONTINE CE CAUTI TU
+
 Slot properties
 
 componenta copil
@@ -12,7 +15,20 @@ componenta parinte
 <componenta-copil #default="{ user }">Hello {{ user.name }}</componenta-copil>
 la al doilea exemplu am utilizat destructurare
 
+<<<<<<< HEAD
 Fast Exit Strategy - este o strategie de a nu mai verifica restul regulilor, cand intalneste o regula invalida
 :bails="false" pentru a nu utiliza strategia de mai sus
 
 the field component has a slot it we take advantage of
+=======
+default value
+in <form :initial-values="objectData"></form>
+in data: objectData: {
+    name_property
+}
+
+-sa scriem un mesaj specific pentru fiecare regula in parent
+    ma intereseaza ca exista chesita asta si se poate realiza
+    in VeeValidate: functia configure, duplicare de reguli pentru a scrie pt o regula specifica
+
+>>>>>>> 862fe1697efbf8725c2864d96a14b8e6972f5c4d
