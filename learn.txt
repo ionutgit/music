@@ -11,3 +11,8 @@ componenta parinte
 -sunt doua variante: <componenta-copil v-slot="v">Hello {{ v.user.name }}</componenta-copil>
 <componenta-copil #default="{ user }">Hello {{ user.name }}</componenta-copil>
 la al doilea exemplu am utilizat destructurare
+
+Fast Exit Strategy - este o strategie de a nu mai verifica restul regulilor, cand intalneste o regula invalida
+:bails="false" pentru a nu utiliza strategia de mai sus
+
+the field component has a slot it we take advantage of
