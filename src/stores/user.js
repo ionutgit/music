@@ -21,7 +21,8 @@ export default defineStore('user', {
         displayName: values.name
       })
 
-      this.isLoggedIn = true
+      this.userLoggedIn = true
+      console.log(this.userLoggedIn)
     }
   }
 })
