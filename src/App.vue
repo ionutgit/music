@@ -285,7 +285,7 @@ export default {
     ...mapWritableState(useUserStore, ['userLoggedIn'])
   },
   created() {
-    if (auth.currenUser) {
+    if (auth.currentUser) {
       this.userLoggedIn = true
     }
   }
