@@ -35,4 +35,11 @@ const router = createRouter({
   linkExactActiveClass: "text-yellow-500"
 })
 
+router.beforeEach((to, from, next) => {
+  console.log('Global Gurad');
+  console.log(to, from);
+
+  next();
+})
+
 export default router
