@@ -46,6 +46,8 @@
 </template>
 
 <script>
+import { storage } from '@/includes/firebase';
+
 export default {
     name: "Upload",
     data() {
@@ -59,7 +61,18 @@ export default {
 
             const files = [...$event.dataTransfer.files];
 
+            files.forEach((file) => {
+                console.log(file.type);
+                if (file.type !== 'audio/mpeg') {
+                    return;
+                }
 
+                const storageRef = storage.ref();
+                const songsRef = storageRef.child(`songs/${file.name}`);
+
+                songsRef.put(file);
+
+            })
 
             console.log(files);
         }
