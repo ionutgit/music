@@ -13,7 +13,7 @@
           </div>
           <div class="p-6">
             <!-- Composition Items -->
-            <composition-item v-for="song in songs" :key="song.docID"></composition-item>
+            <song-item v-for="song in songs" :key="song.docID" />
           </div>
         </div>
       </div>
@@ -22,9 +22,8 @@
 </template>
 
 <script>
-// import useUserStore from '@/stores/user'
 import AppUpload from '@/components/Upload.vue'
-import CompositionItem from '@/components/CompositionItem.vue'
+import SongItem from '@/components/CompositionItem.vue'
 import { songsCollenction, auth } from '@/includes/firebase'
 
 export default {
@@ -36,7 +35,7 @@ export default {
   },
   components: {
     AppUpload,
-    CompositionItem
+    SongItem
   },
   async created() {
     const snapshot = await songsCollenction.where('uid', '==', auth.currentUser.uid).get()
