@@ -19,10 +19,10 @@ const routes = [
     name: 'manage',
     path: '/manage-music', 
     component: Manage,
-    beforeEnter: (to, from, next) => {
-      console.log('beforeEnter Manage Guard');
-      next();
-    },
+    // beforeEnter: (to, from, next) => {
+    //   console.log('beforeEnter Manage Guard');
+    //   next();
+    // },
     meta: {
       requiresAuth: true
     }

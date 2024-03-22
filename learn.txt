@@ -35,3 +35,6 @@ ce nu am stiut:
 -sa pun o clasa specifica pentru link-urile active si sa setez exceptii daca la un link nu doresc
 -meta field 
 
+UPLOUD
+-canceling uploads: exista o functie in fiecare task(cancel())
+

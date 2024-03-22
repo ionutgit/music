@@ -63,7 +63,6 @@ export default {
  
 
       files.forEach((file) => {
-        console.log(file.type)
         if (file.type !== 'audio/mpeg') {
           return
         }
@@ -110,9 +109,12 @@ export default {
             this.uploads[uploadIndex].text_class = 'text-green-400';
         })
       })
-
-      console.log(files)
+    }, 
+  },
+  beforeUnmount() {
+        this.uploads.forEach((upload) => {
+            upload.task.cancel();
+        })
     }
-  }
 }
 </script>
