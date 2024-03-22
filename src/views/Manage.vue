@@ -3,7 +3,7 @@
   <section class="container mx-auto mt-6">
     <div class="md:grid md:grid-cols-3 md:gap-4">
       <div class="col-span-1">
-        <app-upload />
+        <app-upload ref="upload" />
       </div>
       <div class="col-span-2">
         <div class="bg-white rounded border border-gray-200 relative flex flex-col">
@@ -103,23 +103,27 @@
 
 <script>
 // import useUserStore from '@/stores/user'
-import AppUpload from "@/components/Upload.vue"
+import AppUpload from '@/components/Upload.vue'
 
 export default {
   name: 'Manage',
   components: {
     AppUpload
   }
-//   beforeRouteEnter(to, from, next) {
-//     console.log('beforeRouteEnter Guard')
+  // beforeRouteLeave(to, from, next) {
+  //   this.$refs.upload.cancelUpload()
+  //   next()
+  // }
+  //   beforeRouteEnter(to, from, next) {
+  //     console.log('beforeRouteEnter Guard')
 
-//     const store = useUserStore()
+  //     const store = useUserStore()
 
-//     if (store.userLoggedIn) {
-//       next()
-//     } else {
-//       next({ name: 'home' })
-//     }
-//   }
+  //     if (store.userLoggedIn) {
+  //       next()
+  //     } else {
+  //       next({ name: 'home' })
+  //     }
+  //   }
 }
 </script>
