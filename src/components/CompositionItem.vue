@@ -35,5 +35,13 @@
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'CompositionItem',
+  props: {
+    song: {
+      type: Object,
+      required: true
+    }
+  }
+}
 </script>
