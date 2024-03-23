@@ -13,15 +13,16 @@
       </button>
     </div>
     <div v-show="showForm">
-      <vee-form :validation-schema="songSchema" @submit="upadateSong">
+      <vee-form :validation-schema="songSchema" :intial-values="song" @submit="upadateSong">
         <div class="mb-3">
           <label class="inline-block mb-2">Song Title</label>
           <vee-field
-            name="title"
+            name="modified_name"
             type="text"
             class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
             placeholder="Enter Song Title"
           />
+          <ErrorMessage class="text-red-600" name="modified_name" />
         </div>
         <div class="mb-3">
           <label class="inline-block mb-2">Genre</label>
@@ -31,6 +32,7 @@
             class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
             placeholder="Enter Genre"
           />
+          <ErrorMessage class="text-red-600" name="genre" />
         </div>
         <button type="submit" class="py-1.5 px-3 rounded text-white bg-green-600">Submit</button>
         <button
@@ -46,6 +48,8 @@
 </template>
 
 <script>
+import { songsCollenction } from '@/includes/firebase'
+
 export default {
   name: 'CompositionItem',
   props: {
@@ -57,12 +61,16 @@ export default {
   data() {
     return {
       showForm: false,
-      songSchema: {}
+      songSchema: {
+        modified_name: 'required',
+        genre: 'alpha_spaces'
+      }
     }
   },
   methods: {
     upadateSong(values) {
       console.log(values)
+      //   songsCollenction.doc()
     }
   }
 }
