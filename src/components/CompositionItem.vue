@@ -2,7 +2,10 @@
   <div class="border border-gray-200 p-3 mb-4 rounded">
     <div v-show="!showForm">
       <h4 class="inline-block text-2xl font-bold">{{ song.modified_name }}</h4>
-      <button class="ml-1 py-1 px-2 text-sm rounded text-white bg-red-600 float-right">
+      <button
+        class="ml-1 py-1 px-2 text-sm rounded text-white bg-red-600 float-right"
+        @click.prevent="deleteSong"
+      >
         <i class="fa fa-times"></i>
       </button>
       <button
@@ -64,7 +67,7 @@
 </template>
 
 <script>
-import { songsCollenction } from '@/includes/firebase'
+import { songsCollenction, storage } from '@/includes/firebase'
 
 export default {
   name: 'CompositionItem',
@@ -79,6 +82,10 @@ export default {
     },
     i: {
       type: Number,
+      required: true
+    },
+    removeSong: {
+      type: Function,
       required: true
     }
   },
@@ -116,6 +123,17 @@ export default {
       this.alert_variant = 'bg-green-500'
       this.alert_msg = 'Success!'
       this.editSong(this.i, values)
+    },
+    async deleteSong() {
+      console.log('delete song')
+      const storageRef = storage.ref()
+      const songRef = storageRef.child(`songs/${this.song.original_name}`)
+
+      await songRef.delete()
+
+      await songsCollenction.doc(this.song.docID).delete()
+
+      this.removeSong(this.i)
     }
   }
 }
