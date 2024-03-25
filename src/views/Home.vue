@@ -47,7 +47,9 @@ export default {
   name: 'Home',
   data() {
     return {
-      songs: []
+      songs: [],
+      maxPerPage: 1,
+      pendingRequest: false
     }
   },
   components: {
@@ -55,7 +57,23 @@ export default {
   },
   methods: {
     async getSongs() {
-      const snapshot = await songsCollenction.get()
+      if (this.pendingRequest) {
+        return
+      }
+
+      this.pendingRequest = true
+
+      let snapshot
+      if (this.songs.length) {
+        const lastDoc = await songsCollenction.doc(this.songs[this.songs.length - 1].docID).get()
+        snapshot = await songsCollenction
+          .orderBy('modified_name')
+          .startAfter(lastDoc)
+          .limit(this.maxPerPage)
+          .get()
+      } else {
+        snapshot = await songsCollenction.orderBy('modified_name').limit(this.maxPerPage).get()
+      }
 
       snapshot.forEach((document) => {
         this.songs.push({
@@ -63,6 +81,8 @@ export default {
           ...document.data()
         })
       })
+
+      this.pendingRequest = false
     },
     handleScroll() {
       const { scrollTop, offsetHeight } = document.documentElement
@@ -70,7 +90,7 @@ export default {
       const bottomOfWindow = Math.round(scrollTop) + innerHeight === offsetHeight
 
       if (bottomOfWindow) {
-        console.log('bottom of window')
+        this.getSongs()
       }
     }
   },
