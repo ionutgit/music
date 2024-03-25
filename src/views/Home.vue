@@ -53,15 +53,34 @@ export default {
   components: {
     AppSongItem
   },
-  async created() {
-    const snapshot = await songsCollenction.get()
+  methods: {
+    async getSongs() {
+      const snapshot = await songsCollenction.get()
 
-    snapshot.forEach((document) => {
-      this.songs.push({
-        docID: document.id,
-        ...document.data()
+      snapshot.forEach((document) => {
+        this.songs.push({
+          docID: document.id,
+          ...document.data()
+        })
       })
-    })
+    },
+    handleScroll() {
+      const { scrollTop, offsetHeight } = document.documentElement
+      const { innerHeight } = window
+      const bottomOfWindow = Math.round(scrollTop) + innerHeight === offsetHeight
+
+      if (bottomOfWindow) {
+        console.log('bottom of window')
+      }
+    }
+  },
+  async created() {
+    this.getSongs()
+
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
