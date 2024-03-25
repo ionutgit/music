@@ -29,13 +29,13 @@ const routes = [
     }
   },
   {
-    path: '/manage',
-    redirect: { name: 'manage' }
-  },
-  {
     name: 'song',
     path: '/song/:id',
     component: Song
+  },
+  {
+    path: '/manage',
+    redirect: { name: 'manage' }
   },
   {
     path: '/:catchAll(.*)*',
