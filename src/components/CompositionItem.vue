@@ -32,6 +32,7 @@
             type="text"
             class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
             placeholder="Enter Song Title"
+            @input="changeUnsavedFormFlag(true)"
           />
           <ErrorMessage class="text-red-600" name="modified_name" />
         </div>
@@ -43,6 +44,7 @@
             type="text"
             class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
             placeholder="Enter Genre"
+            @input="changeUnsavedFormFlag(true)"
           />
           <ErrorMessage class="text-red-600" name="genre" />
         </div>
@@ -87,6 +89,9 @@ export default {
     removeSong: {
       type: Function,
       required: true
+    },
+    changeUnsavedFormFlag: {
+      type: Function
     }
   },
   data() {
@@ -123,6 +128,8 @@ export default {
       this.alert_variant = 'bg-green-500'
       this.alert_msg = 'Success!'
       this.editSong(this.i, values)
+
+      this.changeUnsavedFormFlag(false)
     },
     async deleteSong() {
       console.log('delete song')

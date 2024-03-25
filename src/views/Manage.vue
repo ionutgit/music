@@ -20,6 +20,7 @@
               :i="i"
               :editSong="editSong"
               :removeSong="removeSong"
+              :changeUnsavedFormFlag="changeUnsavedFormFlag"
             />
           </div>
         </div>
@@ -37,7 +38,8 @@ export default {
   name: 'Manage',
   data() {
     return {
-      songs: []
+      songs: [],
+      unsavedFormFlag: false
     }
   },
   components: {
@@ -59,6 +61,9 @@ export default {
       }
 
       this.songs.push(song)
+    },
+    changeUnsavedFormFlag(value) {
+      this.unsavedFormFlag = value
     }
   },
   async created() {
@@ -67,6 +72,14 @@ export default {
     snapshot.forEach((document) => {
       this.addSong(document)
     })
+  },
+  beforeRouteLeave(to, from, next) {
+    if (!this.unsavedFormFlag) {
+      next()
+    } else {
+      const leave = confirm('You have unsaved changes. Are you sure to leave the page?')
+      next(leave)
+    }
   }
   // beforeRouteLeave(to, from, next) {
   //   this.$refs.upload.cancelUpload()
