@@ -29,7 +29,14 @@
         <i class="fa fa-comments float-right text-green-400 text-2xl"></i>
       </div>
       <div class="p-6">
-        <vee-form :validation-schema="schema">
+        <div
+          v-if="comment_show_alert"
+          class="text-white font-bold text-center p-4 rounded mb-4"
+          :class="comment_alert_variant"
+        >
+          {{ comment_alert_msg }}
+        </div>
+        <vee-form :validation-schema="schema" @submit="addComment">
           <vee-field
             as="textarea"
             name="comment"
@@ -37,7 +44,7 @@
             placeholder="Your comment here..."
           />
           <ErrorMessage class="text-red-600" name="comment" />
-          <button type="submit" class="py-1.5 px-3 rounded text-white bg-green-600 block">
+          <button type="submit" class="py-1.5 px-3 rounded text-white bg-green-600 block" :disabled="comment_in_submission">
             Submit
           </button>
         </vee-form>
@@ -137,7 +144,19 @@ export default {
       song: {},
       schema: {
         comment: 'required|min:3'
-      }
+      },
+      comment_in_submission: false,
+      comment_show_alert: false,
+      comment_alert_variant: 'bg-blue-500',
+      comment_alert_msg: 'Please wait! Your comment is being submitted!'
+    }
+  },
+  methods: {
+    async addComment(values) {
+      this.comment_show_alert = true
+      this.comment_in_submission = true
+      this.comment_alert_variant = 'bg-blue-500'
+      this.comment_alert_msg = 'Please wait! Your comment is being submitted!'
     }
   },
   async created() {

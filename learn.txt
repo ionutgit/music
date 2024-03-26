@@ -39,3 +39,5 @@ UPLOUD
 -canceling uploads: exista o functie in fiecare task(cancel())
 
 -references (ref): nu poti sa modifici datele (modifica dom-ul, dar nu instanta view)
+
+Infinite scroll: nice approch
