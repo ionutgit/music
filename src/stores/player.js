@@ -15,7 +15,9 @@ export default defineStore('player', {
             this.current_song = song
 
             if (this.sound instanceof Howl) {
-                this.sound.unload();
+                // this.sound.unload();
+                this.toggleAudio();
+                return;
             }
 
             this.sound = new Howl({
