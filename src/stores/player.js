@@ -14,6 +14,10 @@ export default defineStore('player', {
         async newSong(song) {
             this.current_song = song
 
+            if (this.sound instanceof Howl) {
+                this.sound.unload();
+            }
+
             this.sound = new Howl({
                 src: [song.url],
                 html5: true
