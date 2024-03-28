@@ -103,6 +103,15 @@ export default {
       sort: '1'
     }
   },
+  watch: {
+    sort(newVal) {
+      this.$router.push({
+        query: {
+          sort: newVal
+        }
+      })
+    }
+  },  
   computed: {
     ...mapState(useUserStore, ['userLoggedIn']), 
     sortedComments() {
