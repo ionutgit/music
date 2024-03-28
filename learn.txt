@@ -41,3 +41,8 @@ UPLOUD
 -references (ref): nu poti sa modifici datele (modifica dom-ul, dar nu instanta view)
 
 Infinite scroll: nice approch
+
+ROUTER LINK 
+-atributul custom: preluam controlul asupra componentei
+-v-slot="{ navigate }" > interesant, transferam spre elemebtul copil cand se face click pe el,
+sa activeze momentul cand sa declanseze router-link
