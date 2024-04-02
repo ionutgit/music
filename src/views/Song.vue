@@ -179,20 +179,39 @@ export default {
       ])
     }
   },
-  async created() {
-    const docSnapshot = await songsCollenction.doc(this.$route.params.id).get()
+  // async created() {
+  //   const docSnapshot = await songsCollenction.doc(this.$route.params.id).get()
 
-    if (!docSnapshot.exists) {
-      this.$router.push({ name: 'home' })
-      return
-    }
+  //   if (!docSnapshot.exists) {
+  //     this.$router.push({ name: 'home' })
+  //     return
+  //   }
 
-    const { sort } = this.$route.query
+  //   const { sort } = this.$route.query
 
-    this.sort = sort === '1' || sort === '2' ? sort : '1'
+  //   this.sort = sort === '1' || sort === '2' ? sort : '1'
 
-    this.song = docSnapshot.data()
-    this.getComments()
+  //   this.song = docSnapshot.data()
+  //   this.getComments()
+  // }
+  async beforeRouteEnter(to, from, next) {
+    const docSnapshot = await songsCollenction.doc(to.params.id).get()
+
+    // next e apelata dupa ce se incarca componenta
+    // vm este contextul componentei
+    next((vm) => {
+      if (!docSnapshot.exists) {
+        vm.$router.push({ name: 'home' })
+        return
+      }
+
+      const { sort } = vm.$route.query
+
+      vm.sort = sort === '1' || sort === '2' ? sort : '1'
+
+      vm.song = docSnapshot.data()
+      vm.getComments()
+    })
   }
 }
 </script>
