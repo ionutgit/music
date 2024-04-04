@@ -46,3 +46,9 @@ ROUTER LINK
 -atributul custom: preluam controlul asupra componentei
 -v-slot="{ navigate }" > interesant, transferam spre elemebtul copil cand se face click pe el,
 sa activeze momentul cand sa declanseze router-link
+
+TESTING
+
+-Unit Test 
+-Snapshot Test 
+-End-toEnd (E2E)
